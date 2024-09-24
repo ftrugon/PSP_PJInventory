@@ -85,4 +85,7 @@ public class Character
         _inventory.Remove(item);
         applyItems();
     }
+    
+    
+    public int InventoryCount() => _inventory.Count;
 }

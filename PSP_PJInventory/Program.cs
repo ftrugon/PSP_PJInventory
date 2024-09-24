@@ -3,8 +3,7 @@
 using System.Diagnostics;
 using PSP_PJInventory;
 
-Console.WriteLine("Hello, World!");
-
+// Probando el programa
 Character fran = new Character(Name: "Fran", MaxHitPoints: 20, BaseDamage: 20, BaseArmor:20);
 
 Console.WriteLine($"${fran.Name}, mHP ${fran.MaxHitPoints}, cHP ${fran.CurrentHitPoints}, bDM ${fran.BaseDamage}," +
