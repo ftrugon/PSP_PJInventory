@@ -31,12 +31,12 @@ public class Character
     
     public int Attack()
     {
-        return BaseDamage;
+        return CurrentDamage;
     }
 
     public int Defense()
     {
-        return BaseArmor;
+        return CurrentArmor;
     }
 
     public void Heal(int amount)

@@ -1,15 +1,14 @@
-using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using PSP_PJInventory;
 using Xunit;
 
 namespace PSP_PJInventory.Tests;
 
-
-//Los tests son los practicamentes los mismos que los de javi pero un poco tocados , simplemente para probar que funciona
-
-
-public class CharacterTest: IDisposable // IDisposable for cleaning purposes 
+[TestSubject(typeof(Character))]
+public class CharacterTest
 {
+    
     // test constants
     private const string TestName = "TestName";
     private const int MaxHp = 20;
@@ -84,9 +83,9 @@ public class CharacterTest: IDisposable // IDisposable for cleaning purposes
     {
         // test heal/receive damage
         _character.receibeDamage(5);
-        Assert.Equal(5, _character.CurrentHitPoints);
-        _character.Heal(10);
         Assert.Equal(15, _character.CurrentHitPoints);
+        _character.Heal(10);
+        Assert.Equal(20, _character.CurrentHitPoints);
     }
 
 }
