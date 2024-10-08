@@ -2,7 +2,8 @@ namespace PSP_PJInventory;
 
 public abstract class Protection: Item
 {
-    
+    public Perk? perk { get; set; }
+
     public string Name;
     public int armor;
     
@@ -10,4 +11,5 @@ public abstract class Protection: Item
     {
         character.CurrentArmor += armor;
     }
+
 }

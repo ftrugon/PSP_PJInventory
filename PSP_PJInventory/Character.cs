@@ -1,34 +1,25 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace PSP_PJInventory;
 
-public class Character
+public class Character(string name, int maxHitPoints, int baseDamage, int baseArmor)
 {
     //Propiedades
-    public string Name; 
+    public string Name = name; 
     
-    public int MaxHitPoints;
-    public int CurrentHitPoints;
+    public int MaxHitPoints = maxHitPoints;
+    public int CurrentHitPoints = maxHitPoints;
     
-    public int BaseDamage;
-    public int CurrentDamage;
+    public int BaseDamage = baseDamage;
+    public int CurrentDamage = baseDamage;
     
-    public int BaseArmor;
-    public int CurrentArmor;
+    public int BaseArmor = baseArmor;
+    public int CurrentArmor = baseArmor;
     
-    private List<Item> _inventory;
+    private List<Item> _inventory = new();
+    private List<Perk> _perks = new();
     
-    //Constructor de la clase
-    public Character(string Name, int MaxHitPoints, int BaseDamage, int BaseArmor)
-    {
-        this.Name = Name;
-        this.MaxHitPoints = MaxHitPoints;
-        CurrentHitPoints = MaxHitPoints;
-        this.BaseDamage = BaseDamage;
-        CurrentDamage = BaseDamage;
-        this.BaseArmor = BaseArmor;
-        CurrentArmor = BaseArmor;
-        _inventory = new List<Item>();
-    }
-    
+    //Metodos
     public int Attack()
     {
         return CurrentDamage;
@@ -50,7 +41,7 @@ public class Character
         }
     }
 
-    public void receibeDamage(int amount)
+    public void ReceibeDamage(int amount)
     {
         CurrentHitPoints -= amount;
         if (CurrentHitPoints <= 0)
@@ -59,33 +50,55 @@ public class Character
         }
     }
 
-    private void resetDamageAndArmor()
+    private void ResetDamageAndArmor()
     {
         CurrentDamage = BaseDamage;
         CurrentArmor = BaseArmor;
     }
-    
-    private void applyItems()
+
+    private void ResetPerks()
     {
-        resetDamageAndArmor();
+        _perks.Clear();
+    }
+    
+    private void ApplyItems()
+    {
+        ResetDamageAndArmor();
+        ResetPerks();
         foreach (var item in _inventory)
         {
             item.Apply(this);
+            if (item.perk != null)
+            {
+                _perks.Add(item.perk);
+            }
         }
     }
     
     public void AddToInventory(Item item)
     {
         _inventory.Add(item);
-        applyItems();
+        ApplyItems();
     }
 
-    public void removeFromInventory(Item item)
+    public void RemoveFromInventory(Item item)
     {
         _inventory.Remove(item);
-        applyItems();
+        ApplyItems();
     }
     
     
     public int InventoryCount() => _inventory.Count;
+
+
+    public void ShowPerks()
+    {
+        
+        Console.WriteLine();
+        foreach (var perk in _perks)
+        {
+            Console.WriteLine($"{perk.Name} ---> {perk.Description}");
+        }
+        Console.WriteLine();
+    }
 }

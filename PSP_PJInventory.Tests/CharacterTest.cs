@@ -71,7 +71,7 @@ public class CharacterTest
         _character.AddToInventory(newItem);
         Assert.Equal(5, _character.InventoryCount());
         Assert.Equal(5*2 + 5 + _character.BaseDamage, _character.Attack());
-        _character.removeFromInventory(newItem);
+        _character.RemoveFromInventory(newItem);
         Assert.Equal(4, _character.InventoryCount());
         Assert.Equal(5 + 5 + _character.BaseDamage, _character.Attack());
         _character.AddToInventory(new Shield(5));
@@ -82,7 +82,7 @@ public class CharacterTest
     public void HealthTest()
     {
         // test heal/receive damage
-        _character.receibeDamage(5);
+        _character.ReceibeDamage(5);
         Assert.Equal(15, _character.CurrentHitPoints);
         _character.Heal(10);
         Assert.Equal(20, _character.CurrentHitPoints);
