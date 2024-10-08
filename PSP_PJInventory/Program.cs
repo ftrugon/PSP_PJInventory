@@ -12,10 +12,10 @@ Console.WriteLine($"${fran.Name}, mHP ${fran.MaxHitPoints}, cHP ${fran.CurrentHi
 fran.ReceibeDamage(10);
 
 
-Axe axe = new Axe(20,new Perk("Quemador", "Quema todo a su paso"));
+Axe axe = new Axe(20,new Perk("Quemador", "Quema todo a su paso",PerkType.BURN));
 fran.AddToInventory(axe);
 
-Shield shield = new Shield(20,new Perk("Primer Golpe", "Te protege del primer golpe"));
+Shield shield = new Shield(20,new Perk("Minion Paco", "Invoca un minion",PerkType.MINION));
 fran.AddToInventory(shield);
 
 Console.WriteLine($"${fran.Name}, mHP ${fran.MaxHitPoints}, cHP ${fran.CurrentHitPoints}, bDM ${fran.BaseDamage}," +
@@ -23,6 +23,9 @@ Console.WriteLine($"${fran.Name}, mHP ${fran.MaxHitPoints}, cHP ${fran.CurrentHi
 
 
 fran.ShowPerks();
+
+
+Console.WriteLine(fran.Attack());
 
 fran.RemoveFromInventory(axe);
 

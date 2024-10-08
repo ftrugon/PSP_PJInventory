@@ -18,11 +18,22 @@ public class Character(string name, int maxHitPoints, int baseDamage, int baseAr
     
     private List<Item> _inventory = new();
     private List<Perk> _perks = new();
+    public List<Minion> Minions = new();
+
+    public int timesHited = 0;
     
     //Metodos
     public int Attack()
     {
-        return CurrentDamage;
+        
+        var damageToSum = 0;
+        
+        foreach (var minion in Minions)
+        {
+            damageToSum += minion.attack();
+        }
+
+        return CurrentDamage + damageToSum;
     }
 
     public int Defense()
@@ -48,6 +59,8 @@ public class Character(string name, int maxHitPoints, int baseDamage, int baseAr
         {
             Console.WriteLine("The player has died!");
         }
+
+        timesHited++;
     }
 
     private void ResetDamageAndArmor()
@@ -74,17 +87,35 @@ public class Character(string name, int maxHitPoints, int baseDamage, int baseAr
             }
         }
     }
+
+
+    void ResetMinions()
+    {
+        Minions.Clear();
+    }
+    
+    private void ApplyPerks()
+    {
+        ResetMinions();
+        foreach (var perk in _perks)
+        {
+            perk.Apply(this);
+        }
+    }
     
     public void AddToInventory(Item item)
     {
         _inventory.Add(item);
         ApplyItems();
+        ApplyPerks();
     }
 
     public void RemoveFromInventory(Item item)
     {
         _inventory.Remove(item);
         ApplyItems();
+        ApplyPerks();
+
     }
     
     
