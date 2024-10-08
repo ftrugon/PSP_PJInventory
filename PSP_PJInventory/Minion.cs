@@ -4,7 +4,7 @@ public class Minion(string name, int damage)
 {
     public int attack()
     {
-        Console.WriteLine($"The minion {name} has attacked");
+        Console.WriteLine($"The {name} has attacked");
         return damage;
     }
 }

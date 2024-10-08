@@ -9,13 +9,13 @@ public class Perk(string name, string description, PerkType perkType)
     {
         if (perkType == PerkType.MINION)
         {
-            character.Minions.Add(new Minion($"minion of {Name}",10));
+            character.Minions.Add(new Minion($"{Name}",10));
         }else if (perkType == PerkType.BURN)
         {
             character.CurrentDamage += 10;
         }else if (perkType == PerkType.FIRST_STRIKE)
         {
-            if (character.timesHited == 1)
+            if (character.TimesHited == 1)
             {
                 character.CurrentHitPoints = character.MaxHitPoints;
             }

@@ -20,7 +20,7 @@ public class Character(string name, int maxHitPoints, int baseDamage, int baseAr
     private List<Perk> _perks = new();
     public List<Minion> Minions = new();
 
-    public int timesHited = 0;
+    public int TimesHited = 0;
     
     //Metodos
     public int Attack()
@@ -60,7 +60,7 @@ public class Character(string name, int maxHitPoints, int baseDamage, int baseAr
             Console.WriteLine("The player has died!");
         }
 
-        timesHited++;
+        TimesHited++;
     }
 
     private void ResetDamageAndArmor()
